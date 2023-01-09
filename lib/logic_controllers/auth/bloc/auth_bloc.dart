@@ -25,9 +25,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(UnAuthenticateState());
         }
       }
-      if (event is SignOutEvent) {
+      else if (event is SignOutEvent) {
         try {
           await userRepository.signOut();
+          print('user ${userRepository.isSignedIn()}');
+          emit(AuthInitial());
           emit(UnAuthenticateState());
         } catch (e) {
           print('out error $e');

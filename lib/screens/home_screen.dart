@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:weight_tracher_task/core/utils/snack_bar_message.dart';
 import 'package:weight_tracher_task/core/widgets/add_weight_dialog.dart';
 import 'package:weight_tracher_task/logic_controllers/auth/bloc/auth_bloc.dart';
@@ -52,7 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 itemCount: weights.length,
                 itemBuilder: (context, index) {
-                  return Text(weights[index].title!);
+                  return ListTile(
+                    title: Text(weights[index].title!),
+                    subtitle:  weights[index].createdAt != null ?Text(DateFormat(
+                      "dd, MMM yyyy , hh:mm a ",
+                    ).format(
+                      weights[index].createdAt.toDate(),
+                    ),):Container(),
+                  );
+
+
                 },
               );
             }
@@ -75,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListView(
             children: [
               BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+                print('UnAuthenticateState $state');
                 if (state is UnAuthenticateState) {
                   print('UnAuthenticateState e');
                   Navigator.pop(context);
@@ -83,10 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       (route) => false);
                 }
               }, builder: (context, state) {
+                print('UnAuthenticateState $state');
                 return ListTile(
                   title: const Text('Logout'),
                   onTap: () {
-                    BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
+
+                    context.read<AuthBloc>().add(SignOutEvent());
+                    //BlocProvider.of<AuthBloc>(context,listen: false).add(SignOutEvent());
                   },
                 );
               }),

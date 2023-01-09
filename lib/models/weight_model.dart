@@ -26,7 +26,7 @@ class WeightModel extends Equatable{
     return WeightModel(
       title: map['title'],
       id: snap.id,
-      createdAt: map['createdAt']
+      createdAt: map['createdAt'],
     );
   }
   Map<String,dynamic> toDocument(){

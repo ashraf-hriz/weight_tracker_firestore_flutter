@@ -38,7 +38,12 @@ class UserRepository {
 
   Future<void> signOut() async {
     print('signou ${isSignedIn()}');
-    await firebaseAuth.signOut();
+    try {
+      await firebaseAuth.signOut();
+      print('signou ${isSignedIn()}');
+    } catch (e) {
+      print ('signout error ${e.toString()} ');
+    }
   }
 
   // check Sign In

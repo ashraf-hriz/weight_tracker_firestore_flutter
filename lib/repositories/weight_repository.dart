@@ -47,7 +47,7 @@ class WeightRepositoryImpl extends WeightRepository {
 
     try {
       var weights =  weightCollection.doc(firebaseAuth.currentUser!.uid)
-          .collection('Weight').snapshots().map((snapshot) {
+          .collection('Weight').orderBy('createdAt',descending: true).snapshots().map((snapshot) {
         return snapshot.docs
             .map((doc) => WeightModel.fromSnapshot(doc))
             .toList();

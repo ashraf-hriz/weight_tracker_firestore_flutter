@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^3.5.1
   firebase_core: ^1.8.0
   get_it: ^7.2.0
+  intl: ^0.17.0
 dependency_overrides:
   firebase_core_platform_interface: 4.5.1
   

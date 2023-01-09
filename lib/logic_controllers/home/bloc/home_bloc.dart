@@ -64,4 +64,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _weightsUpdated(WeightsUpdated event, Emitter<HomeState> emit){
     emit(WeightsLoaded(weights: event.weights));
   }
+
+
 }
