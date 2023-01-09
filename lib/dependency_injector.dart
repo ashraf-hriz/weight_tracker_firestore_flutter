@@ -18,7 +18,7 @@ Future<void> init() async {
   //repository
   //FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   sl.registerLazySingleton(() => UserRepository(firebaseAuth: sl()));
-  sl.registerLazySingleton(() => WeightRepository());
+  sl.registerLazySingleton<WeightRepository>(() => WeightRepositoryImpl());
   //external
   final firebaseAuth = FirebaseAuth.instance;
   sl.registerLazySingleton(() => firebaseAuth);

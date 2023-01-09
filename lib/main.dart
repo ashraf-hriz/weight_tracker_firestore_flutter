@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => di.sl<LoginBloc>(),
         ),
-        BlocProvider(create: ((context) => di.sl<HomeBloc>())),
+        BlocProvider(
+          create: (context) => di.sl<HomeBloc>()..add(LoadWeights()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

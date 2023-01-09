@@ -3,39 +3,40 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class WeightModel extends Equatable{
-  String? weight;
+  String? title;
   String? id;
   var createdAt;
 
-  WeightModel({this.weight,this.createdAt,this.id});
+  WeightModel({this.title,this.createdAt,this.id});
 
   factory WeightModel.fromJson(Map<String,dynamic> json){
-    return WeightModel(weight: json['weight'] as String,createdAt: json['createdAt'] as Timestamp);
+    return WeightModel(title: json['title'] as String,createdAt: json['createdAt'] as Timestamp);
   }
 
   Map<String, Object> toJson() {
     return {
-      'weight': weight!,
+      'title': title!,
       'createdAt': createdAt,
     };
   }
 
-  WeightModel fromSnapshot(DocumentSnapshot snap) {
+  factory WeightModel.fromSnapshot(DocumentSnapshot snap) {
     Map<String,dynamic> map = snap.data() as Map<String,dynamic>;
+    print('map $map');
     return WeightModel(
-      weight: map['weight'],
+      title: map['title'],
       id: snap.id,
       createdAt: map['createdAt']
     );
   }
   Map<String,dynamic> toDocument(){
     return {
-      'weight': weight,
+      'title': title,
       'createdAt': createdAt,
     };
   }
   @override
   // TODO: implement props
-  List<Object?> get props => [weight,createdAt,id];
+  List<Object?> get props => [title,createdAt,id];
 
 }

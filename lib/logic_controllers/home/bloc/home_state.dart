@@ -13,4 +13,14 @@ class LoadingState extends HomeState {}
 
 class WeightAdded extends HomeState {}
 
-class WeightFeild extends HomeState {}
+class WeightsLoaded extends HomeState {
+  final List<WeightModel> weights;
+  const WeightsLoaded({required this.weights});
+}
+class WeightFailed extends HomeState {
+  final String message;
+
+  const WeightFailed({required this.message});
+
+}
+

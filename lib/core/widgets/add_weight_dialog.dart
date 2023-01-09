@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weight_tracher_task/logic_controllers/home/bloc/home_bloc.dart';
 
-class AddWieghtWidget extends StatefulWidget {
-  const AddWieghtWidget({Key? key}) : super(key: key);
+class AddWeightWidget extends StatefulWidget {
+  const AddWeightWidget({Key? key}) : super(key: key);
 
   @override
-  State<AddWieghtWidget> createState() => _AddWieghtWidgetState();
+  State<AddWeightWidget> createState() => _AddWeightWidgetState();
 }
 
-class _AddWieghtWidgetState extends State<AddWieghtWidget> {
+class _AddWeightWidgetState extends State<AddWeightWidget> {
   TextEditingController weightTextCtr = TextEditingController();
   @override
   Widget build(BuildContext context) {

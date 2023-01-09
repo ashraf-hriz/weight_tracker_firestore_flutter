@@ -9,5 +9,14 @@ abstract class HomeEvent extends Equatable {
 
 class AddWeightEvent extends HomeEvent {
   final String weight;
-  AddWeightEvent({required this.weight});
+  const AddWeightEvent({required this.weight});
+}
+
+class LoadWeights extends HomeEvent {}
+
+class WeightsUpdated extends HomeEvent {
+  final List<WeightModel> weights;
+
+  const WeightsUpdated({required this.weights});
+
 }
