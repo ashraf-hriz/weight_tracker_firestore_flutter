@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:weight_tracher_task/core/utils/snack_bar_message.dart';
 import 'package:weight_tracher_task/core/widgets/add_weight_dialog.dart';
 import 'package:weight_tracher_task/logic_controllers/auth/bloc/auth_bloc.dart';
 import 'package:weight_tracher_task/logic_controllers/home/bloc/home_bloc.dart';
 import 'package:weight_tracher_task/models/weight_model.dart';
 import 'package:weight_tracher_task/screens/splash_screen.dart';
+
+import '../core/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -103,7 +106,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     //BlocProvider.of<AuthBloc>(context,listen: false).add(SignOutEvent());
                   },
                 );
-              }),
+              },),
+              ListTile(
+                title: const Text('light mode'),
+                onTap: () {
+                  if (ThemeProvider.controllerOf(context).theme.id == DARK_MODE){
+                    ThemeProvider.controllerOf(context).nextTheme();
+                  }
+                },
+              ),
+              ListTile(
+                title: const Text('dark mode'),
+                onTap: () {
+                  if (ThemeProvider.controllerOf(context).theme.id == LIGHT_MODE){
+                    ThemeProvider.controllerOf(context).nextTheme();
+                  }
+
+                },
+              ),
             ],
           ),
         ),
