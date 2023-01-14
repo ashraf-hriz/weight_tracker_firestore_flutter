@@ -43,11 +43,24 @@ class MyApp extends StatelessWidget {
       ],
       child: ThemeProvider(
         saveThemesOnChange: true,
-        loadThemeOnInit: true,
-        defaultThemeId: SchedulerBinding.instance?.window.platformBrightness ==
-                Brightness.light
-            ? LIGHT_MODE
-            : DARK_MODE,
+        loadThemeOnInit: false,
+        onInitCallback: (controller, previouslySavedThemeFuture) async {
+          String? savedTheme = await previouslySavedThemeFuture;
+          print('savedTheme $savedTheme');
+          if (savedTheme != null) {
+            controller.setTheme(savedTheme);
+          } else {
+            Brightness platformBrightness =
+                SchedulerBinding.instance?.window.platformBrightness ??
+                    Brightness.light;
+            if (platformBrightness == Brightness.dark) {
+              controller.setTheme(DARK_MODE);
+            } else {
+              controller.setTheme(LIGHT_MODE);
+            }
+            controller.forgetSavedTheme();
+          }
+        },
         themes: [
           AppTheme(
             id: LIGHT_MODE,
